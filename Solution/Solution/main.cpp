@@ -69,10 +69,11 @@ void pattern_tree::get_data_base() {
 	std::string input = "";
 	std::cin >> input;
 	while (input != "*") {
+		data_base_numbers.push_back(input);
+		std::cin >> input;
+		std::cin >> input;
 		data_base_names.push_back(input);
 		std::cin >> input;
-		std::cin >> input;
-		data_base_numbers.push_back(input);
 	}
 }
 
