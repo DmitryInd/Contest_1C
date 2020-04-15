@@ -96,13 +96,13 @@ void pattern_tree::build_one_tree(node* root_, std::vector<std::string> &data_ba
 				if (now->edges.find(pattern_char) == now->edges.end()) {
 					now->edges[pattern_char] = std::move(std::unique_ptr<node>(new node));
 					now->edges[pattern_char]->parent = now;
-					if (i == input.size() - 1) {
-						now->edges[pattern_char]->index = j;
-					}
 					now->edges[pattern_char]->owner = this;
 					now->edges[pattern_char]->last_char = pattern_char;
 				}
 				now = now->edges[pattern_char].get();
+				if (i == input.size() - 1) {
+					now->index = j;
+				}
 			}
 		}
 	}
@@ -135,9 +135,9 @@ void pattern_tree::node::get_next_values(std::vector<std::string> &plus_data)
 
 //Основная функция поиска
 void pattern_tree::search_pattern(node* root_, std::vector<std::string>& data_base, const std::string& input, int start_index, std::vector<std::string>& next_data) {
+	char pattern_char = ' '; //Сюда посимвольно считывается номера/имена
+	node* now = root_; //Узел, в котором сейчас находимся
 	for (int i = start_index; i <= input.size(); i++) {
-		char pattern_char = ' '; //Сюда посимвольно считывается номера/имена
-		node* now = root_; //Узел, в котором сейчас находимся
 		if (i == input.size()) {
 			now->get_next_values(next_data);
 			break;
