@@ -130,7 +130,7 @@ void pattern_tree::node::get_next_values(std::vector<std::string> &plus_data)
 		plus_data.push_back(get_value());	
 	}
 
-	for (auto next_node : now->edges) {
+	for (auto next_node : edges) {
 		next_node.second->get_next_values(plus_data);
 	}
 }
