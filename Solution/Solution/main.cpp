@@ -130,7 +130,7 @@ void pattern_tree::node::get_next_values(std::vector<std::string> &plus_data)
 		plus_data.push_back(get_value());	
 	}
 
-	for (auto next_node : edges) {
+	for (const auto& next_node : edges) {
 		next_node.second->get_next_values(plus_data);
 	}
 }
@@ -147,7 +147,7 @@ void pattern_tree::search_pattern(node* root_, std::vector<std::string>& data_ba
 		else {
 			pattern_char = input[i];
 			if (pattern_char == '*') {
-				for (auto next_node : now->edges) {
+				for (const auto& next_node : now->edges) {
 					search_pattern(next_node.second.get(), data_base, input, i + 1, next_data);
 				}
 			}
