@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include <queue>
 #include <memory>
@@ -8,7 +8,7 @@
 
 
 
-//Реализация бора
+//Р РµР°Р»РёР·Р°С†РёСЏ Р±РѕСЂР°
 class pattern_tree {
 public:
 	pattern_tree();
@@ -17,26 +17,26 @@ public:
 	friend void search_pattern_phone(pattern_tree& bor, const std::string& input);
 
 private:
-	struct node; // forward-декларация для IntelliSense
+	struct node; // forward-РґРµРєР»Р°СЂР°С†РёСЏ РґР»СЏ IntelliSense
 	struct node {
 		std::string get_value();
 		void get_next_values(std::vector<std::string>& plus_data);
-		int index = -1; //Индекс телефона, за который отвечает узел/-1, если такого нету
-		pattern_tree* owner; //Бор, которому принадлежит узел
-		char last_char = '\0'; //Буква, по которой перешли в данный узел
-		node* parent; //Указатель на родительский узел
-		std::unordered_map<char, std::unique_ptr<node>> edges; //Хеш-таблица ребёр из узла (буква ребра, указатель на узёл)
-		node* name_phone_number; //Ссылка на соответствующий узел в боре имён/номеров
+		int index = -1; //РРЅРґРµРєСЃ С‚РµР»РµС„РѕРЅР°, Р·Р° РєРѕС‚РѕСЂС‹Р№ РѕС‚РІРµС‡Р°РµС‚ СѓР·РµР»/-1, РµСЃР»Рё С‚Р°РєРѕРіРѕ РЅРµС‚Сѓ
+		pattern_tree* owner; //Р‘РѕСЂ, РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРЅР°РґР»РµР¶РёС‚ СѓР·РµР»
+		char last_char = '\0'; //Р‘СѓРєРІР°, РїРѕ РєРѕС‚РѕСЂРѕР№ РїРµСЂРµС€Р»Рё РІ РґР°РЅРЅС‹Р№ СѓР·РµР»
+		node* parent; //РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ СѓР·РµР»
+		std::unordered_map<char, std::unique_ptr<node>> edges; //РҐРµС€-С‚Р°Р±Р»РёС†Р° СЂРµР±С‘СЂ РёР· СѓР·Р»Р° (Р±СѓРєРІР° СЂРµР±СЂР°, СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СѓР·С‘Р»)
+		node* name_phone_number; //РЎСЃС‹Р»РєР° РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ СѓР·РµР» РІ Р±РѕСЂРµ РёРјС‘РЅ/РЅРѕРјРµСЂРѕРІ
 	};
 
-	std::pair<std::unique_ptr<node>, std::unique_ptr<node>> root; //Корневой узел
+	std::pair<std::unique_ptr<node>, std::unique_ptr<node>> root; //РљРѕСЂРЅРµРІРѕР№ СѓР·РµР»
 
-	int size_str = 0; //Общий размер строки
-	std::vector<std::string> data_base_numbers; //База данных номеров телефонов
-	std::vector<std::string> data_base_names; //База данных имён, из которых состоит бор
+	int size_str = 0; //РћР±С‰РёР№ СЂР°Р·РјРµСЂ СЃС‚СЂРѕРєРё
+	std::vector<std::string> data_base_numbers; //Р‘Р°Р·Р° РґР°РЅРЅС‹С… РЅРѕРјРµСЂРѕРІ С‚РµР»РµС„РѕРЅРѕРІ
+	std::vector<std::string> data_base_names; //Р‘Р°Р·Р° РґР°РЅРЅС‹С… РёРјС‘РЅ, РёР· РєРѕС‚РѕСЂС‹С… СЃРѕСЃС‚РѕРёС‚ Р±РѕСЂ
 
 	void search_pattern(node* root_, std::vector<std::string>& data_base, const std::string& input, int start_index, std::vector<std::string>& next_data);
-	void get_data_base(); //Считывает базу данных телефонов
+	void get_data_base(); //РЎС‡РёС‚С‹РІР°РµС‚ Р±Р°Р·Сѓ РґР°РЅРЅС‹С… С‚РµР»РµС„РѕРЅРѕРІ
 	void build_tree();
 	void build_one_tree(node* root_, std::vector<std::string>& data_base);
 };
@@ -79,13 +79,13 @@ void pattern_tree::get_data_base() {
 	}
 }
 
-//Строит стандартное дерево бора
+//РЎС‚СЂРѕРёС‚ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ РґРµСЂРµРІРѕ Р±РѕСЂР°
 void pattern_tree::build_one_tree(node* root_, std::vector<std::string> &data_base){
-	//Объявление переменных
-	char pattern_char = ' '; //Сюда посимвольно считывается номера/имена
-	node* now = root_; //Узел, в котором сейчас находимся
-	//Считывание
-	std::string input; //Строка для ввода
+	//РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С…
+	char pattern_char = ' '; //РЎСЋРґР° РїРѕСЃРёРјРІРѕР»СЊРЅРѕ СЃС‡РёС‚С‹РІР°РµС‚СЃСЏ РЅРѕРјРµСЂР°/РёРјРµРЅР°
+	node* now = root_; //РЈР·РµР», РІ РєРѕС‚РѕСЂРѕРј СЃРµР№С‡Р°СЃ РЅР°С…РѕРґРёРјСЃСЏ
+	//РЎС‡РёС‚С‹РІР°РЅРёРµ
+	std::string input; //РЎС‚СЂРѕРєР° РґР»СЏ РІРІРѕРґР°
 	for (int j = 0; j < data_base.size(); j++) {
 		input = data_base[j];
 		for (int i = 0; i <= input.size(); i++) {
@@ -110,20 +110,20 @@ void pattern_tree::build_one_tree(node* root_, std::vector<std::string> &data_ba
 	}
 }
 
-//Строит дерево бора для телефонов и фамилий
+//РЎС‚СЂРѕРёС‚ РґРµСЂРµРІРѕ Р±РѕСЂР° РґР»СЏ С‚РµР»РµС„РѕРЅРѕРІ Рё С„Р°РјРёР»РёР№
 void pattern_tree::build_tree() {
 	get_data_base();
 	build_one_tree(root.first.get(), data_base_numbers);
 	build_one_tree(root.second.get(), data_base_names);
 }
 
-//Для получения полного значения, в данном узле
+//Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РїРѕР»РЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ, РІ РґР°РЅРЅРѕРј СѓР·Р»Рµ
 std::string pattern_tree::node::get_value()
 {
 	return (index == -1? "": owner->data_base_numbers[index] + " - " + owner->data_base_names[index]);
 }
 
-//Для получения всех последующих значений
+//Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РІСЃРµС… РїРѕСЃР»РµРґСѓСЋС‰РёС… Р·РЅР°С‡РµРЅРёР№
 void pattern_tree::node::get_next_values(std::vector<std::string> &plus_data)
 {
 	if (index != -1) {
@@ -135,11 +135,11 @@ void pattern_tree::node::get_next_values(std::vector<std::string> &plus_data)
 	}
 }
 
-//Основная функция поиска
+//РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РїРѕРёСЃРєР°
 void pattern_tree::search_pattern(node* root_, std::vector<std::string>& data_base, const std::string& input, int start_index, std::vector<std::string>& next_data) {
 	for (int i = start_index; i <= input.size(); i++) {
-		char pattern_char = ' '; //Сюда посимвольно считывается номера/имена
-		node* now = root_; //Узел, в котором сейчас находимся
+		char pattern_char = ' '; //РЎСЋРґР° РїРѕСЃРёРјРІРѕР»СЊРЅРѕ СЃС‡РёС‚С‹РІР°РµС‚СЃСЏ РЅРѕРјРµСЂР°/РёРјРµРЅР°
+		node* now = root_; //РЈР·РµР», РІ РєРѕС‚РѕСЂРѕРј СЃРµР№С‡Р°СЃ РЅР°С…РѕРґРёРјСЃСЏ
 		if (i == input.size()) {
 			now->get_next_values(next_data);
 			break;
@@ -152,25 +152,25 @@ void pattern_tree::search_pattern(node* root_, std::vector<std::string>& data_ba
 				}
 			}
 			if (now->edges.find(pattern_char) == now->edges.end()) {
-				next_data = {"Не найдено подходящего номера"};
+				next_data = {"РќРµ РЅР°Р№РґРµРЅРѕ РїРѕРґС…РѕРґСЏС‰РµРіРѕ РЅРѕРјРµСЂР°"};
 			}
 			now = now->edges[pattern_char].get();
 		}
 	}
 }
 
-//Функция поиска телефона по номеру (с пропусками и без)
+//Р¤СѓРЅРєС†РёСЏ РїРѕРёСЃРєР° С‚РµР»РµС„РѕРЅР° РїРѕ РЅРѕРјРµСЂСѓ (СЃ РїСЂРѕРїСѓСЃРєР°РјРё Рё Р±РµР·)
 void search_pattern_name(pattern_tree& bor, const std::string& input) {
-	std::vector<std::string> next_data; //Вывод
+	std::vector<std::string> next_data; //Р’С‹РІРѕРґ
 	bor.search_pattern(bor.root.second.get(), bor.data_base_names, input, 0, next_data);
 	for (int j = 0; j < next_data.size(); j++) {
 		std::cout << next_data[j];
 	}
 }
 
-//Функция поиска телефона по имени
+//Р¤СѓРЅРєС†РёСЏ РїРѕРёСЃРєР° С‚РµР»РµС„РѕРЅР° РїРѕ РёРјРµРЅРё
 void search_pattern_phone(pattern_tree& bor, const std::string& input) {
-	std::vector<std::string> next_data; //Вывод
+	std::vector<std::string> next_data; //Р’С‹РІРѕРґ
 	bor.search_pattern(bor.root.first.get(), bor.data_base_numbers, input, 0, next_data);
 	for (int j = 0; j < next_data.size(); j++) {
 		std::cout << next_data[j];
@@ -178,26 +178,26 @@ void search_pattern_phone(pattern_tree& bor, const std::string& input) {
 }
 
 int main() {
-	//Ускорение ввода
+	//РЈСЃРєРѕСЂРµРЅРёРµ РІРІРѕРґР°
 	std::ios::sync_with_stdio(false);
 	std::cin.tie(nullptr);
-	//Построение дерева по введённым номерам и фамилиям
+	//РџРѕСЃС‚СЂРѕРµРЅРёРµ РґРµСЂРµРІР° РїРѕ РІРІРµРґС‘РЅРЅС‹Рј РЅРѕРјРµСЂР°Рј Рё С„Р°РјРёР»РёСЏРј
 	pattern_tree bor;
-	//Ввод
+	//Р’РІРѕРґ
 	std::string input;
 	while (std::cin >> input) {
 		if (input == "1") {
-			//Поиск телефона по номеру
+			//РџРѕРёСЃРє С‚РµР»РµС„РѕРЅР° РїРѕ РЅРѕРјРµСЂСѓ
 			std::cin >> input;
 			search_pattern_phone(bor, input);
 		}
 		else if (input == "2") {
-			//Поиск телефона по имени
+			//РџРѕРёСЃРє С‚РµР»РµС„РѕРЅР° РїРѕ РёРјРµРЅРё
 			std::cin >> input;
 			search_pattern_name(bor, input);
 		}
 		else if (input == "3") {
-			//Выход
+			//Р’С‹С…РѕРґ
 			break;
 		}
 	}
