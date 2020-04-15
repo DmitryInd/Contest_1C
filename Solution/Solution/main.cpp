@@ -148,11 +148,11 @@ void pattern_tree::search_pattern(node* root_, std::vector<std::string>& data_ba
 			pattern_char = input[i];
 			if (pattern_char == '*') {
 				for (auto next_node : now->edges) {
-					search_pattern(next_node.second.get(), data_base, input, i, next_data);
+					search_pattern(next_node.second.get(), data_base, input, i + 1, next_data);
 				}
 			}
 			if (now->edges.find(pattern_char) == now->edges.end()) {
-				next_data = {"Не найдено подходящего номера"};
+				break;
 			}
 			now = now->edges[pattern_char].get();
 		}
