@@ -66,16 +66,13 @@ void get_name_phone(std::string &input, std::string &input_name, std::string &in
 }
 
 void pattern_tree::get_data_base() {
-	std::string input_name = "";
-	std::string input_phone = "";
 	std::string input = "";
 	std::cin >> input;
 	while (input != "*") {
-		get_name_phone(input, input_name, input_phone);
-		data_base_names.push_back(input_name);
-		data_base_numbers.push_back(input_phone);
-		input_name = "";
-		input_phone = "";
+		data_base_names.push_back(input);
+		std::cin >> input;
+		std::cin >> input;
+		data_base_numbers.push_back(input);
 	}
 }
 
